@@ -13,12 +13,20 @@
 /**
  * @param {ListNode} head
  */
-var Solution = function (head) {};
+var Solution = function (head) {
+  this.list = [];
+  while (head != null) {
+    this.list.push(head.val);
+    head = head.next;
+  }
+};
 
 /**
  * @return {number}
  */
-Solution.prototype.getRandom = function () {};
+Solution.prototype.getRandom = function () {
+  return this.list[Math.floor(Math.random() * this.list.length)];
+};
 
 /**
  * Your Solution object will be instantiated and called as such:
