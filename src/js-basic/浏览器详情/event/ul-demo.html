@@ -20,7 +20,31 @@
       <li>10</li>
     </ul>
   </body>
-  <script type="text/javascript"></script>
+  <script type="text/javascript">
+    // 事件挂载在子节点上性能较差
+    // const liList = document.getElementsByTagName("li");
+
+    // for (let i = 0; i < liList.length; i++) {
+    //   liList[i].addEventListener("click", function (e) {
+    //     alert(`内容为${e.target.innerHTML}, 索引为${i}`);
+    //   });
+    // }
+
+    const ul = document.querySelector("ul");
+
+    ul.addEventListener("click", function (e) {
+      const target = e.target;
+
+      if (target.tagName.toLowerCase() === "li") {
+        const liList = this.querySelectorAll("li");
+        // es6方法，兼容性问题
+        const index = Array.from(liList).indexOf(target);
+        // 原型链方法
+        // const index = Array.prototype.indexOf.call(liList, target);
+        alert(`内容为${target.innerHTML}, 索引为${index}`);
+      }
+    });
+  </script>
   <style>
     #ul {
       background-color: gray;
