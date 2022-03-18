@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>h5路由</title>
+  </head>
+  <body>
+    <div class="container">
+      <a href="./">首页</a>
+      <a href="./about">关于我们</a>
+      <a href="./user">用户列表</a>
+    </div>
+
+    <div id="context"></div>
+  </body>
+  <script src="">
+    class BaseRouter {
+      constructor() {
+        this.routes = {};
+        this._bindPopstate();
+        this.init();
+      }
+
+      init(path) {
+        window.history.replaceState({ path }, null, path);
+        const cb = this.routes[path];
+        if (cb) {
+          cb();
+        }
+      }
+
+      route(path, callback) {
+        this.routes[path] = callback || function () {};
+      }
+
+      go(path) {
+        window.history.pushState({ path }, null, path);
+        const cb = this.routes[path];
+        if (cb) {
+          cb();
+        }
+      }
+
+      _bindPopstate() {
+        window.addEventListener("popstate", (e) => {
+          const path = e.state && e.state.path;
+          this.routes[path] && this.routes[path]();
+        });
+      }
+    }
+
+    const Route = new BaseRouter();
+
+    Route.route("./about", () => changeText("关于我们的页面"));
+    Route.route("./user", () => changeText("用户列表页面"));
+    Route.route("./", () => changeText("首页"));
+
+    function changeText(arg) {
+      document.getElementById("context").innerHTML = arg;
+    }
+
+    container.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        e.preventDefault();
+        Route.go(e.target.getAttribute("href"));
+      }
+    });
+  </script>
+</html>
