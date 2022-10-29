@@ -15,6 +15,12 @@
  *   提示：
  *   1 <= values <= 10000
  *   最多会对 appendTail、deleteHead 进行 10000 次调用*
+ *
+ * 思路
+ *   标签：栈和队列
+ *   整体思路：栈实现队列的本质就是负负得正，两次先进后出的结果就是先进先出了。在构造函数中完成两个栈的初始化工作，在 appendTail 函数中向其中一个栈 stack1 结尾插入整数，在 deleteHead 函数中如果 stack2 为空，则将 stack1 的值全部弹出放到 stack2 中，再从 stack2 中取值，这样达到了负负为正的队列效果
+ *   时间复杂度：O(1)
+ *   空间复杂度：O(n)
  */
 
 var CQueue = function () {
