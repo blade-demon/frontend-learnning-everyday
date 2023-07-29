@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vw vh 测试</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        background-color: red;
+        width: 10vmax;
+        height: 10vmax;
+      }
+
+      /*
+        vw 视口的宽度
+        vh 视口的高度
+        vmax 取两者最大值、vmin 取两者最小值
+
+        window.innerHeight = 100vh;
+        window.innerWidth = 100vw;
+      */
+    </style>
+  </head>
+  <body>
+    <p>vw vh 测试</p>
+    <div id="container"></div>
+  </body>
+</html>

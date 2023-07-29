@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>line-height继承问题</title>
+    <style>
+      body {
+        font-size: 20px;
+        line-height: 2;
+      }
+
+      p {
+        background-color: #ccc;
+        font-size: 16px;
+      }
+
+      /* body 的line-heigh 为数字1.5的话， 继承 后 p 的 line-height 32px */
+      /* body 的line-heigh 为百分比200%的话， 继承 后 p 的 line-height 40px */
+    </style>
+  </head>
+  <body>
+    <p>这是一行文字</p>
+  </body>
+</html>
