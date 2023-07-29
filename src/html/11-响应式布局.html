@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>媒体查询</title>
+    <style>
+      @media only screen and (max-width: 374px) {
+        /* iPhone 5 或者更小的尺寸，以 iPhone5的宽度 320px 的比例设置font-size */
+        html {
+          font-size: 86px;
+        }
+      }
+      @media only screen and (min-width: 375px) and (max-width: 413px) {
+        /* iPhone 6,7,8 and iPhone X*/
+        html {
+          font-size: 100px;
+        }
+      }
+
+      @media only screen and (min-width: 414px) {
+        /* iPhone 6P 或者更大尺寸，以 iPhone 6P的宽度（414px）比例设置 font-size*/
+        html {
+          font-size: 110px;
+        }
+      }
+
+      body {
+        font-size: 0.16rem;
+      }
+
+      #div1 {
+        width: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="id1">this is div</div>
+  </body>
+</html>
