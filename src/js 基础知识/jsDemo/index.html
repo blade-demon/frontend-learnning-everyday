@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+  </head>
+  <body>
+    <p>一段文字 1</p>
+    <p>一段文字 2</p>
+    <p>一段文字 3</p>
+    <p>一段文字 4</p>
+    <p>一段文字 5</p>
+    <!-- <script src="./index.js"></script> -->
+    <!-- <script>
+      for (let i = 0; i < 10; i++) {
+        let a = document.createElement("a");
+        a.innerHTML = i + "<br />";
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert(i);
+        });
+        document.body.appendChild(a);
+      }
+    </script> -->
+    <script>
+      // 闭包1：函数作为返回值
+      // function create() {
+      //   const res = 1;
+      //   return () => {
+      //     console.log(res);
+      //   };
+      // }
+
+      // let fn = create();
+
+      // const res = 2;
+      // fn();
+
+      // 闭包 2：函数作为参数传递
+      // function print(fn) {
+      //   let a = 200;
+      //   fn();
+      // }
+
+      // let a = 100;
+      // function fn() {
+      //   console.log(a);
+      // }
+      // print(fn);
+
+      // 总结：闭包中自由变量的取值是函数定义的地方而不是执行的地方
+    </script>
+    <script src="./bind-demo.js"></script>
+  </body>
+</html>
