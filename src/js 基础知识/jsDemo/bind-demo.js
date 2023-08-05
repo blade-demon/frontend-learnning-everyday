@@ -9,7 +9,7 @@ function fn1(a, b, c) {
 // console.log(res);
 
 // 模拟 bind
-Function.prototype.bind2 = function () {
+Function.prototype.bind1 = function () {
   // 将所有参数拆解为数组
   const args = Array.prototype.slice.call(arguments);
   // 获取 this（数组第一项）
