@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手写 Promise</title>
+  </head>
+  <body>
+    <script src="./myPromise.js"></script>
+    <script>
+      const p1 = new MyPromise((resolve, reject) => {
+        // resolve(100);
+        // reject("错误信息");
+        setTimeout(() => resolve(100), 200);
+      });
+
+      console.log(p1);
+
+      const p11 = p1.then((data) => {
+        console.log(data + 1);
+        return data + 1;
+      });
+
+      const p12 = p11.then((data) => {
+        console.log(data + 2);
+        return data + 2;
+      });
+
+      const p13 = p12.catch((err) => {
+        console.error(err);
+      });
+
+      const p2 = MyPromise.resolve(20);
+      //   const p3 = MyPromise.reject("错误信息");
+      const p4 = MyPromise.all([p1, p2]);
+      p4.then((result) => {
+        console.log("all result", result);
+      });
+
+      // const p5 = MyPromise.race([p1, p2]);
+      // p5.then((result) => {
+      //   console.log("race result:", result);
+      // });
+    </script>
+  </body>
+</html>
