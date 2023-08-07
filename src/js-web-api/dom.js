@@ -28,3 +28,10 @@ console.log(p1.style.width);
 // p1.setAttribute("style", "font-size:50px");
 
 // property 和 attribute 都有可能引起 DOM 重新渲染
+
+const parentElement = document.getElementById("parent");
+const childElement = document.getElementById("child");
+const textNode = document.createTextNode("Some text");
+const pChild = document.createElement("div");
+pChild.textContent = "123";
+parentElement.append(childElement, textNode, "<div>More content</div>", pChild);
