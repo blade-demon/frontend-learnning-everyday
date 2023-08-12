@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>运行环境演示</title>
+    <style>
+      .lazy-load-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .lazy-load {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+
+      img {
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+      }
+
+      img[data-src] {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <p>一段文字 1</p>
+    <p>一段文字 2</p>
+    <p>一段文字 3</p>
+    <p>一段文字 4</p>
+    <img
+      id="img1"
+      src="https://i.ytimg.com/vi/ETV17M4SauU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBPvWiHu-nE7YvmjzZstOm-MbnKDA"
+      alt=""
+      srcset=""
+    />
+
+    <div class="lazy-load-container">
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://images.unsplash.com/photo-1682695795557-17447f921f79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://images.unsplash.com/photo-1691379635079-9f438036ea58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://plus.unsplash.com/premium_photo-1675337267945-3b2fff5344a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://images.unsplash.com/photo-1691676112160-53cddd988388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://images.unsplash.com/photo-1682685797828-d3b2561deef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+      <img
+        class="lazy-load"
+        src="https://placehold.co/600x400"
+        data-src="https://plus.unsplash.com/premium_photo-1681245141314-fb0b76bf164e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8&w=1000&q=80"
+        alt=""
+      />
+    </div>
+    <!-- <script src="./index.js"></script> -->
+    <script src="./lazy-loadimg.js"></script>
+  </body>
+</html>
