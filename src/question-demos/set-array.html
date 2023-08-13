@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // const arr = [1, 2, 3, 4];
+      // const set = new Set([1, 2, 3, 4]);
+
+      // set.add(5);
+      // set.delete(20);
+      // set.has(3);
+      // set.size;
+      // set.forEach((val) => console.log(val));
+
+      // Set 元素是不能重复的（数组去重）
+
+      // Set 是无序的（快），Array 是有序的（慢）
+      // Set 数据不能重复
+
+      // arr 有多慢？
+      const arr = [];
+      for (let i = 0; i < 100 * 100000; i++) {
+        arr.push(i);
+      }
+      // console.time("arr unshift");
+      // arr.unshift("a");
+      // console.timeEnd("arr unshift");
+      // console.time("arr push");
+      // arr.push("b");
+      // console.timeEnd("arr push");
+
+      // 数组查找
+      console.time("arr find");
+      arr.includes(500000);
+      console.timeEnd("arr find");
+
+      const set = new Set();
+      for (let i = 0; i < 100 * 100000; i++) {
+        set.add(i);
+      }
+
+      // console.time("set add");
+      // set.add("a");
+      // console.timeEnd("set add");
+
+      console.time("set find");
+      set.has(500000);
+      console.timeEnd("set find");
+    </script>
+  </body>
+</html>
