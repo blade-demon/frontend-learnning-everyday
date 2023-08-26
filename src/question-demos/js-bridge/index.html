@@ -18,17 +18,17 @@
           iframe.style.visibility = "hidden";
           document.body.appendChild(iframe);
 
-          iframe.onload(() => {
+          iframe.onload = () => {
             // App 会在页面上返回的数据，js 可以读取到相关的信息
             const content = iframe1.contentWindow.document.body.innerHTML;
             onSuccess(JSON.parse(content));
             iframe.remove();
-          });
+          };
 
-          iframe.onerror(() => {
+          iframe.onerror = () => {
             onError();
             iframe.remove();
-          });
+          };
 
           // App 会拦截该请求，拿到链接上面的 data
           iframe.src = `my-app-name://${url}?data=${JSON.stringify(data)}`;
