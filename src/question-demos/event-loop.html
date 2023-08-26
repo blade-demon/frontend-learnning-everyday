@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Loop</title>
+  </head>
+  <body>
+    <p>Event Loop</p>
+    <script>
+      const p = document.createElement("p");
+      p.innerHTML = "new Paragraph";
+      document.body.appendChild(p);
+      const list = document.getElementsByTagName("p");
+      console.log("length", list.length);
+    </script>
+  </body>
+</html>
