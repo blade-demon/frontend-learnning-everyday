@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Bridge</title>
+  </head>
+  <body>
+    <h4>JS Bridge</h4>
+
+    <iframe id="iframe1" src="" frameborder="0"></iframe>
+    <!-- <script src="./index.js"></script> -->
+    <script>
+      // 封装 JS-Bridge
+      const sdk = {
+        invoke(url, data, onSuccess, onError) {
+          const iframe = document.createElement("iframe");
+          iframe.style.visibility = "hidden";
+          document.body.appendChild(iframe);
+
+          iframe.onload(() => {
+            // App 会在页面上返回的数据，js 可以读取到相关的信息
+            const content = iframe1.contentWindow.document.body.innerHTML;
+            onSuccess(JSON.parse(content));
+            iframe.remove();
+          });
+
+          iframe.onerror(() => {
+            onError();
+            iframe.remove();
+          });
+
+          // App 会拦截该请求，拿到链接上面的 data
+          iframe.src = `my-app-name://${url}?data=${JSON.stringify(data)}`;
+        },
+        fn1(data, onSuccess, onError) {
+          this.invoke("xxxx/api", data, onSuccess, onError);
+        },
+        fn2(data, onSuccess, onError) {
+          this.invoke("xxxx/api", data, onSuccess, onError);
+        },
+        fn3(data, onSuccess, onError) {
+          this.invoke("xxxx/api", data, onSuccess, onError);
+        },
+      };
+
+      // 使用方式
+      sdk.fn1(
+        "123",
+        () => {},
+        () => {}
+      );
+    </script>
+  </body>
+</html>

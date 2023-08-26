@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RequestAnimationFrame</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 50px;
+        border: solid 3px #333;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Request animation frame</p>
+    <button id="btn1">change</button>
+    <div id="box"></div>
+    <script>
+      /**
+       * 区别：
+       *    requestAnimationFrame 高优先级，每次渲染完都回执行
+       *    requestIdleCallback 空闲时才执行，低优先级
+       * 共同点：
+       *    都是宏任务
+       *
+       */
+      const box = document.getElementById("box");
+      document.getElementById("btn1").addEventListener("click", () => {
+        let currentWidth = 100;
+        const maxWidth = 400;
+        function addWidth() {
+          currentWidth = currentWidth + 3;
+          box.style.width = `${currentWidth}px`;
+
+          if (currentWidth < maxWidth) {
+            window.requestAnimationFrame(addWidth);
+          }
+        }
+
+        addWidth();
+      });
+    </script>
+  </body>
+</html>

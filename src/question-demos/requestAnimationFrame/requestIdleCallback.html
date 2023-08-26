@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RequestIdleCallback</title>
+  </head>
+  <body>
+    <script>
+      window.onload = () => {
+        console.log("start");
+        requestIdleCallback(() => {
+          // 低优先级
+          console.log("requestIdleCallback...");
+        });
+
+        requestAnimationFrame(() => {
+          // 高优先级
+          console.log("requestAnimationFrame...");
+        });
+        setTimeout(() => {
+          console.log("setTimeout...");
+        });
+        console.log("end");
+      };
+    </script>
+  </body>
+</html>
