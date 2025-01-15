@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>脚本加载失败重试</title>
+    <script>
+      // 备用域名
+      const domains = ["cde.com", "abc.com", "lfd-static.lufaxcdn.com", "mp.lufunds.com"];
+
+      // 缓存脚本加载失败的次数
+      const cacheMap = {
+        // "https://static.lufaxcdn.com/m-public/lulu-vendor.react-16.13.1.9afd709c.js": 0,
+        // "https://static.lufaxcdn.com/m-public/lulu.f31112e8.js": 0,
+      };
+
+      // 监听脚本加载失败, 一定要在脚本加载之前添加监听事件，且一定要在捕获阶段添加事件监听
+      window.addEventListener(
+        "error",
+        function (e) {
+          const target = e.target;
+          if (target.tagName === "SCRIPT") {
+            console.log("脚本加载失败");
+
+            // 获取脚本的src属性
+            const jsSrc = target.src;
+            // console.log(jsSrc);
+            const jsSrcFullUrl = new URL(jsSrc);
+            const { pathname } = jsSrcFullUrl;
+
+            // 缓存脚本尝试加载js文件的次数
+            if (cacheMap[pathname] !== undefined) {
+              cacheMap[pathname] = cacheMap[pathname] + 1;
+            } else {
+              cacheMap[pathname] = 0;
+            }
+            let findDomainTimes = cacheMap[pathname];
+
+            // 缓存大于等于备用域名的长度，说明所有域名都加载失败
+            if (findDomainTimes >= domains.length) {
+              console.log("所有域名加载失败");
+              return;
+            }
+
+            const tryDomain = domains[findDomainTimes];
+            // 替换域名尝试加载更新域名后的脚本
+            jsSrcFullUrl.hostname = tryDomain;
+            const newJsSrc = jsSrcFullUrl.toString();
+
+            // 创建新的script标签
+            const newScript = document.createElement("script");
+            newScript.src = newJsSrc;
+            newScript.onload = function () {
+              console.log("脚本加载成功");
+            };
+            newScript.onerror = function () {
+              console.log("脚本加载失败");
+            };
+
+            target.parentNode.appendChild(newScript);
+            target.remove();
+          }
+        },
+        true
+      );
+    </script>
+  </head>
+  <body>
+    <script src="https://static.lufaxcdn.com/m-public/lulu-vendor.react-16.13.1.9afd709c.js"></script>
+    <script src="https://static.lufaxcdn.com/m-public/lulu.f31112e8.js"></script>
+  </body>
+</html>
