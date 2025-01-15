@@ -20,7 +20,7 @@
         function (e) {
           const target = e.target;
           if (target.tagName === "SCRIPT") {
-            console.log("脚本加载失败");
+            // console.log("脚本加载失败");
 
             // 获取脚本的src属性
             const jsSrc = target.src;
@@ -47,17 +47,15 @@
             jsSrcFullUrl.hostname = tryDomain;
             const newJsSrc = jsSrcFullUrl.toString();
 
-            // 创建新的script标签
-            const newScript = document.createElement("script");
-            newScript.src = newJsSrc;
-            newScript.onload = function () {
-              console.log("脚本加载成功");
-            };
-            newScript.onerror = function () {
-              console.log("脚本加载失败");
-            };
+            // 创建新的script标签加载新的脚本
 
-            target.parentNode.appendChild(newScript);
+            // 阻塞方式， 可以保证执行顺序()
+            document.write('<script src="' + newJsSrc + '"></' + "script>");
+
+            // 非阻塞
+            // const newScript = document.createElement("script");
+            // newScript.src = newJsSrc;
+            // target.parentNode.appendChild(newScript);
             target.remove();
           }
         },
