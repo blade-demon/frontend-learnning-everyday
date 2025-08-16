@@ -4,6 +4,7 @@
   "description": "## 每天完成",
   "main": "index.js",
   "scripts": {
+    "test-promise": "promises-aplus-tests src/MyPromise/myPromise.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "promises-aplus-tests": "^2.1.2"
   }
 }
