@@ -1,74 +1,67 @@
-# React 使用指南
+# React 使用方法指南
 
-## 目录
-1. [基础概念](#基础概念)
-2. [组件开发](#组件开发)
-3. [状态管理](#状态管理)
-4. [生命周期](#生命周期)
-5. [Hooks使用](#hooks使用)
-6. [事件处理](#事件处理)
-7. [条件渲染](#条件渲染)
-8. [列表渲染](#列表渲染)
-9. [表单处理](#表单处理)
-10. [样式处理](#样式处理)
+## 🎯 React简介
 
-## 基础概念
+React是由Facebook开发的一个用于构建用户界面的JavaScript库。主要特点：
+
+- **组件化开发**：将UI拆分为独立的、可复用的组件
+- **虚拟DOM**：提高渲染性能
+- **单向数据流**：数据从父组件流向子组件
+- **JSX语法**：在JavaScript中编写HTML
+
+## 🚀 快速开始
+
+### 1. 创建项目
+```bash
+# 使用Vite (推荐)
+npm create vite@latest my-app -- --template react
+
+# 使用Create React App
+npx create-react-app my-app
+```
+
+### 2. 安装依赖
+```bash
+cd my-app
+npm install
+```
+
+### 3. 启动开发服务器
+```bash
+npm run dev
+```
+
+## 🧩 核心概念
 
 ### JSX语法
 ```jsx
-// 在JavaScript中编写HTML
+// 基础JSX
 const element = <h1>Hello, React!</h1>;
 
 // 使用表达式
 const name = 'React';
 const element = <h1>Hello, {name}!</h1>;
+
+// 使用属性
+const element = <img src={user.avatarUrl} alt="头像" />;
 ```
 
 ### 组件
 ```jsx
-// 函数组件
+// 函数组件 (推荐)
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Hello, {props.name}!</h1>;
 }
 
 // 类组件
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Hello, {this.props.name}!</h1>;
   }
 }
 ```
 
-## 组件开发
-
-### 函数组件（推荐）
-```jsx
-function Greeting({ name, age }) {
-  return (
-    <div>
-      <h1>Hello, {name}!</h1>
-      <p>You are {age} years old.</p>
-    </div>
-  );
-}
-```
-
-### 类组件
-```jsx
-class Greeting extends React.Component {
-  render() {
-    const { name, age } = this.props;
-    return (
-      <div>
-        <h1>Hello, {name}!</h1>
-        <p>You are {age} years old.</p>
-      </div>
-    );
-  }
-}
-```
-
-## 状态管理
+## 📊 状态管理
 
 ### useState Hook
 ```jsx
@@ -120,62 +113,7 @@ function Counter() {
 }
 ```
 
-## 生命周期
-
-### 类组件生命周期
-```jsx
-class LifecycleDemo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-  }
-
-  componentDidMount() {
-    // 组件挂载后执行
-    console.log('Component mounted');
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // 组件更新后执行
-    console.log('Component updated');
-  }
-
-  componentWillUnmount() {
-    // 组件卸载前执行
-    console.log('Component will unmount');
-  }
-
-  render() {
-    return <div>Lifecycle Demo</div>;
-  }
-}
-```
-
-### Hooks替代生命周期
-```jsx
-import { useEffect } from 'react';
-
-function LifecycleDemo() {
-  useEffect(() => {
-    // 相当于 componentDidMount
-    console.log('Component mounted');
-    
-    return () => {
-      // 相当于 componentWillUnmount
-      console.log('Component will unmount');
-    };
-  }, []); // 空数组表示只在挂载时执行
-
-  useEffect(() => {
-    // 相当于 componentDidUpdate
-    console.log('Component updated');
-  }); // 没有依赖数组，每次更新都执行
-
-  return <div>Lifecycle Demo</div>;
-}
-```
-
-## Hooks使用
+## 🎣 Hooks使用
 
 ### useEffect Hook
 ```jsx
@@ -200,7 +138,7 @@ function UserProfile({ userId }) {
     }
 
     fetchUser();
-  }, [userId]); // 当userId改变时重新执行
+  }, [userId]); // 依赖数组
 
   if (loading) return <div>Loading...</div>;
   if (!user) return <div>User not found</div>;
@@ -247,7 +185,7 @@ function ThemedButton() {
 }
 ```
 
-## 事件处理
+## 🎯 事件处理
 
 ```jsx
 function EventHandling() {
@@ -281,11 +219,10 @@ function EventHandling() {
 }
 ```
 
-## 条件渲染
+## 🔀 条件渲染
 
 ```jsx
 function ConditionalRendering({ isLoggedIn, user }) {
-  // 使用三元运算符
   return (
     <div>
       {isLoggedIn ? (
@@ -294,17 +231,14 @@ function ConditionalRendering({ isLoggedIn, user }) {
         <h1>Please log in</h1>
       )}
       
-      {/* 使用逻辑与运算符 */}
       {isLoggedIn && <p>You are logged in!</p>}
-      
-      {/* 使用逻辑或运算符 */}
       {!isLoggedIn && <p>Please log in to continue</p>}
     </div>
   );
 }
 ```
 
-## 列表渲染
+## 📝 列表渲染
 
 ```jsx
 function ListRendering() {
@@ -317,14 +251,12 @@ function ListRendering() {
 
   return (
     <div>
-      {/* 简单列表 */}
       <ul>
         {items.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
       
-      {/* 对象列表 */}
       <ul>
         {users.map(user => (
           <li key={user.id}>
@@ -337,9 +269,8 @@ function ListRendering() {
 }
 ```
 
-## 表单处理
+## 📋 表单处理
 
-### 受控组件
 ```jsx
 import { useState } from 'react';
 
@@ -350,16 +281,16 @@ function ControlledForm() {
     message: ''
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log('Form data:', formData);
   };
 
@@ -403,7 +334,7 @@ function ControlledForm() {
 }
 ```
 
-## 样式处理
+## 🎨 样式处理
 
 ### 内联样式
 ```jsx
@@ -444,61 +375,81 @@ function CSSClasses() {
 }
 ```
 
-### CSS Modules
-```jsx
-import styles from './Component.module.css';
+## ⚡ 性能优化
 
-function CSSModules() {
+### React.memo
+```jsx
+import React from 'react';
+
+const ExpensiveComponent = React.memo(({ data, onUpdate }) => {
+  console.log('ExpensiveComponent rendered');
+  
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>CSS Modules</h1>
-      <button className={styles.button}>Styled Button</button>
+    <div>
+      <h3>Expensive Component</h3>
+      <p>Data items: {data.length}</p>
+      <button onClick={onUpdate}>Update Data</button>
+    </div>
+  );
+});
+```
+
+### useMemo
+```jsx
+import { useMemo } from 'react';
+
+function ExpensiveCalculation({ data }) {
+  const expensiveValue = useMemo(() => {
+    return data
+      .filter(item => item.active)
+      .map(item => item.value * 2)
+      .reduce((sum, value) => sum + value, 0);
+  }, [data]);
+
+  return (
+    <div>
+      <h3>Result: {expensiveValue}</h3>
     </div>
   );
 }
 ```
 
-### Styled Components
+## 🛡️ 错误处理
+
+### 错误边界
 ```jsx
-import styled from 'styled-components';
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-`;
-
-const Title = styled.h1`
-  color: #333;
-  font-size: 24px;
-  font-weight: bold;
-`;
-
-const Button = styled.button`
-  background-color: ${props => props.primary ? '#007bff' : '#6c757d'};
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  
-  &:hover {
-    opacity: 0.8;
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
   }
-`;
 
-function StyledComponents() {
-  return (
-    <Container>
-      <Title>Styled Components</Title>
-      <Button primary>Primary Button</Button>
-      <Button>Secondary Button</Button>
-    </Container>
-  );
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-boundary">
+          <h2>Something went wrong!</h2>
+          <button onClick={() => this.setState({ hasError: false })}>
+            Try again
+          </button>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
 }
 ```
 
-## 最佳实践
+## 💡 最佳实践
 
 1. **组件命名**：使用PascalCase命名组件
 2. **Props验证**：使用PropTypes或TypeScript进行类型检查
@@ -507,7 +458,7 @@ function StyledComponents() {
 5. **错误边界**：使用Error Boundary处理组件错误
 6. **代码分割**：使用React.lazy进行代码分割
 
-## 常用工具和库
+## 🔧 常用工具和库
 
 - **状态管理**：Redux, Zustand, Recoil
 - **路由**：React Router
@@ -515,3 +466,13 @@ function StyledComponents() {
 - **表单处理**：Formik, React Hook Form
 - **数据获取**：React Query, SWR
 - **测试**：Jest, React Testing Library
+
+## 📚 学习资源
+
+- [React官方文档](https://react.dev/)
+- [React Hooks文档](https://react.dev/reference/react)
+- [React教程](https://react.dev/learn)
+
+---
+
+**记住：学习React最好的方式就是动手实践！** 🚀

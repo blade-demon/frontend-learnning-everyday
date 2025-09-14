@@ -1,0 +1,52 @@
+.image-container {
+  position: relative;
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.image-list {
+  display: flex;
+  background: black;
+  /* overflow: hidden; */
+}
+
+.btn {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.btn.prev-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+.btn.next-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+
+.indicator-container {
+  position: fixed;
+  bottom: 10px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: black;
+}
